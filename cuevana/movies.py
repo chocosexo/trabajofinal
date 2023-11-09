@@ -6,7 +6,7 @@ from werkzeug.exceptions import abort
 
 from cuevana.db import get_db
 
-bp = Blueprint('movies', __name__)
+bp = Blueprint('movies', __name__, url_prefix='/movies/')
 
 @bp.route('/')
 def index():
@@ -19,3 +19,4 @@ def index():
 
 
     return render_template('movies/index.html', movie=movie)
+
