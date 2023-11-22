@@ -18,4 +18,4 @@ def index():
     ).fetchall()
 
 
-    return render_template('idioma/index.html', lenguaje=lenguaje)
+    return render_template('lenguaje/index.html', lenguaje=lenguaje)

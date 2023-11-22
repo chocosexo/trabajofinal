@@ -7,17 +7,17 @@ from werkzeug.exceptions import abort
 from cuevana.db import get_db
 
 bp = Blueprint('actor', __name__, url_prefix='/actor/')
-bpapi = Blueprint('api_actors', __name__, url_prefix="/api/actor")
+bpapi = Blueprint('api_actor', __name__, url_prefix="/api/actor")
 
 @bp.route('/')
 def index():
     db = get_db()
-    actor = db.execute(
+    actores = db.execute(
         'SELECT first_name,last_name,actor_id'
         ' FROM actor '
         ' ORDER BY first_name,last_name '
     ).fetchall()
-    return render_template('actor/index.html', actor = actor)
+    return render_template('actores/index.html', actores = actores)
 
 @bpapi.route('/')
 def index_api():

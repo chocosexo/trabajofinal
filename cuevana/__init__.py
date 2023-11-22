@@ -2,7 +2,6 @@ import os
 
 from flask import Flask
 
-
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
@@ -34,6 +33,15 @@ def create_app(test_config=None):
 
     from . import movies 
     app.register_blueprint(movies.bp)
-    app.add_url_rule('/', endpoint='index')
+    app.add_url_rule('/', endpoint='movies.index')
+
+    from . import lenguaje
+    app.register_blueprint(lenguaje.bp)
+
+    from . import categoria 
+    app.register_blueprint(categoria.bp)
+
+    from . import actor
+    app.register_blueprint(actor.bp) 
 
     return app
