@@ -60,6 +60,7 @@ CREATE TABLE IF NOT EXISTS "film_category" (
 	PRIMARY KEY("film_id","category_id"),
 	CONSTRAINT "fk_film_category_category" FOREIGN KEY("category_id") REFERENCES "category"("category_id") ON DELETE NO ACTION ON UPDATE CASCADE
 );
+
 INSERT INTO "actor" VALUES (1,'PENELOPE','GUINESS','2020-12-23 07:12:29');
 INSERT INTO "actor" VALUES (2,'NICK','WAHLBERG','2020-12-23 07:12:29');
 INSERT INTO "actor" VALUES (3,'ED','CHASE','2020-12-23 07:12:29');
@@ -7906,4 +7907,5 @@ INNER JOIN film AS f ON i.film_id = f.film_id
 INNER JOIN film_category AS fc ON f.film_id = fc.film_id
 INNER JOIN category AS c ON fc.category_id = c.category_id
 GROUP BY c.name;
+
 COMMIT;

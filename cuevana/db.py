@@ -1,3 +1,4 @@
+import os
 import sqlite3
 
 import click
@@ -11,7 +12,7 @@ def dict_factory(cursor, row):
 def get_db():
     if 'db' not in g:
         g.db = sqlite3.connect(
-            current_app.config['DATABASE'],
+            db_file,
             detect_types=sqlite3.PARSE_DECLTYPES
         )
         g.db.row_factory = dict_factory
@@ -41,3 +42,12 @@ def init_db_command():
 def init_app(app):
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
+
+# Ruta donde se almacenará la base de datos
+db_folder = current_app.instance_path
+
+# Nombre del archivo de la base de datos
+db_name = 'pelis.sqlite'
+
+# Ruta completa al archivo de la base de datos
+db_file = os.path.join(db_folder, db_name)
